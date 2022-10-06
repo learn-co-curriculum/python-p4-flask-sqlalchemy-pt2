@@ -77,7 +77,7 @@ Now that we're in, let's start adding some records:
 >>> from models import db, Owner, Pet
 
 >>> pet = Pet(name="Ben", species="Dog")
->>> db.session.add(ben)
+>>> db.session.add(pet)
 >>> db.session.commit()
 >>> pet.id
 # => 1
