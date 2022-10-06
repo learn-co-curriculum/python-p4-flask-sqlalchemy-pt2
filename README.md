@@ -230,7 +230,7 @@ from flask_migrate import Migrate
 from models import db
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 migrate = Migrate(app, db)
@@ -265,7 +265,7 @@ moment to review before we keep moving:
   response has a status code of 200, which means that the resource exists
   and is accessible at the provided URL.
 
-Run `python app/app.py` from the command line and navigate to 127.0.0.1:5000.
+Run `python app/app.py` from the command line and navigate to 127.0.0.1:5555.
 You should see this message in your browser:
 
 ![h1 text "Welcome to the pet/owner directory!" in Google Chrome](
@@ -283,7 +283,7 @@ We'll start by adding another view for pets, searched by ID.
 
 # after index()
 
-@app.route('/pet/<int:id>')
+@app.route('pets/<int:id>')
 def pet_by_id(id):
     pet = Pet.query.filter(Pet.id == id).first()
     
@@ -301,8 +301,8 @@ def pet_by_id(id):
 
 ```
 
-Run the application again and navigate to [127.0.0.1:5000/pet/1](
-127.0.0.1:5000/pet/1). Because we
+Run the application again and navigate to [127.0.0.1:5555/pets/1](
+127.0.0.1:5555/pets/1). Because we
 generated data with Faker, you will probably not see the same names, but
 your format should match below:
 
@@ -310,7 +310,7 @@ your format should match below:
 https://curriculum-content.s3.amazonaws.com/python/flask-sqlalchemy-pets-owners-pet1.png
 )
 
-Navigate now to 127.0.0.1:5000/pet/1000. You will see an error message that
+Navigate now to 127.0.0.1:5555/pets/1000. You will see an error message that
 suggests something went wrong on your server. We're not tracking 1000 pets right
 now, but we still don't want our users to see error pages like this. Let's make
 another small change to the pet_by_id view to fix this:
@@ -320,7 +320,7 @@ another small change to the pet_by_id view to fix this:
 
 # after index()
 
-@app.route('/pet/<int:id>')
+@app.route('/pets/<int:id>')
 def pet_by_id(id):
     pet = Pet.query.filter(Pet.id == id).first()
 
@@ -427,7 +427,7 @@ from flask_migrate import Migrate
 from models import db, Owner, Pet
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 migrate = Migrate(app, db)
@@ -442,7 +442,7 @@ def index():
     )
     return response
 
-@app.route('/pet/<int:id>')
+@app.route('/pets/<int:id>')
 def pet_by_id(id):
     pet = Pet.query.filter(Pet.id == id).first()
 
