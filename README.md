@@ -60,7 +60,7 @@ models, views, contexts, and the database as if the application were really
 running online.
 
 If you're not there already, navigate to the `app/` directory. Enter `flask
-shell` to enter to Flask shell.
+shell` to enter the Flask shell.
 
 ```console
 $ flask shell
