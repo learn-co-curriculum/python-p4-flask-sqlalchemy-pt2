@@ -269,7 +269,7 @@ Run `python app/app.py` from the command line and navigate to 127.0.0.1:5555.
 You should see this message in your browser:
 
 ![h1 text "Welcome to the pet/owner directory!" in Google Chrome](
-https://curriculum-content.s3.amazonaws.com/python/flask-sqlalchemy-pets-owners-index.png
+https://curriculum-content.s3.amazonaws.com/python/flask-sqlalchemy-pt2-1.png
 )
 
 ### Creating Our Views
@@ -283,7 +283,7 @@ We'll start by adding another view for pets, searched by ID.
 
 # after index()
 
-@app.route('pets/<int:id>')
+@app.route('/pets/<int:id>')
 def pet_by_id(id):
     pet = Pet.query.filter(Pet.id == id).first()
     
@@ -306,8 +306,9 @@ Run the application again and navigate to [127.0.0.1:5555/pets/1](
 generated data with Faker, you will probably not see the same names, but
 your format should match below:
 
-![h1 text Information for Richard. Line items for species and owner name.](
-https://curriculum-content.s3.amazonaws.com/python/flask-sqlalchemy-pets-owners-pet1.png
+![h1 text Information for Ann. Line items for species (Hamster) and owner name
+(Angel Rich).](
+https://curriculum-content.s3.amazonaws.com/python/flask-sqlalchemy-pt2-2.png
 )
 
 Navigate now to 127.0.0.1:5555/pets/1000. You will see an error message that
@@ -388,15 +389,15 @@ Not all people have pets, but they still might be in our database if they had a
 pet before or are inquiring about pets now. If an owner has no pets, we return a
 message informing the user of this fact.
 
-![Michael Olsen has no pets at this time.](
-https://curriculum-content.s3.amazonaws.com/python/owner-no-pets.png
+![Brittney Foster has no pets at this time.](
+https://curriculum-content.s3.amazonaws.com/python/flask-sqlalchemy-pt2-3.png
 )
 
 If an owner _does_ have pets, we use an interpretation to collect the pets and
 a for loop to add a new line item for each pet with its species and name.
 
-![Amanda Paul has a chicken named Derrick and a Dog named Kevin](
-https://curriculum-content.s3.amazonaws.com/python/owner-with-pets.png
+![Veronica Frost has a hamster named Jerry and a Dog named Patricia](
+https://curriculum-content.s3.amazonaws.com/python/flask-sqlalchemy-pt2-4.png
 )
 
 ***
