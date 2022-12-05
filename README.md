@@ -64,7 +64,7 @@ shell` to enter the Flask shell.
 
 ```console
 $ flask shell
-# => Python 3.10.4 (main, May 12 2022, 12:46:07) [Clang 13.1.6 (clang-1316.0.21.2)] on darwin
+# => Python 3.8.13 (main, May 12 2022, 12:46:07) [Clang 13.1.6 (clang-1316.0.21.2)] on darwin
 # => App: app
 # => Instance: /python-p4-flask-sqlalchemy-pt2/app/instance
 >>> # enter code here!
