@@ -35,11 +35,11 @@ prior lesson is already configured here just enter your virtual environment
 with `pipenv install && pipenv shell` and run `flask db upgrade head` from the
 `app/` directory to generate your database.
 
-Make sure to run the following commands as well to configure your Flask
-environment:
+Make sure to run the following commands in the `app/` directory as well to
+configure your Flask environment:
 
 ```console
-$ export FLASK_APP=app/app.py
+$ export FLASK_APP=app.py
 $ export FLASK_RUN_PORT=5555
 ```
 
@@ -174,7 +174,7 @@ scripts and vanilla SQLAlchemy scripts. Keep an eye out for minor errors that
 arise and refer back to the [Flask-SQLAlchemy documentation][flask_sqla] as
 needed.
 
-Run `python app/seed.py` to seed the database.
+Run `python seed.py` from the `app/` directory to seed the database.
 
 ***
 
@@ -265,8 +265,8 @@ moment to review before we keep moving:
   response has a status code of 200, which means that the resource exists
   and is accessible at the provided URL.
 
-Run `python app/app.py` from the command line and navigate to 127.0.0.1:5555.
-You should see this message in your browser:
+Enter the `app/` directory if you're not there already and run `python app.py`.
+Navigate to 127.0.0.1:5555, and you should see this message in your browser:
 
 ![h1 text "Welcome to the pet/owner directory!" in Google Chrome](
 https://curriculum-content.s3.amazonaws.com/python/flask-sqlalchemy-pt2-1.png
