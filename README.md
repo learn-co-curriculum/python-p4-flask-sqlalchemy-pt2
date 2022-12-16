@@ -33,9 +33,9 @@ Now that we've created a database that is intrinsically linked to a Flask
 application, we should probably try to use it! The completed code from the
 prior lesson is already configured here just enter your virtual environment
 with `pipenv install && pipenv shell` and run `flask db upgrade head` from the
-`app/` directory to generate your database.
+`server/` directory to generate your database.
 
-Make sure to run the following commands in the `app/` directory as well to
+Make sure to run the following commands in the `server/` directory as well to
 configure your Flask environment:
 
 ```console
@@ -43,7 +43,7 @@ $ export FLASK_APP=app.py
 $ export FLASK_RUN_PORT=5555
 ```
 
-Port 5555 is already configured in `app/app.py` as well, if you prefer to run
+Port 5555 is already configured in `server/app.py` as well, if you prefer to run
 your application as a script.
 
 ***
@@ -59,14 +59,14 @@ of your application upon launch. Inside of this shell, you can interact with
 models, views, contexts, and the database as if the application were really
 running online.
 
-If you're not there already, navigate to the `app/` directory. Enter `flask
+If you're not there already, navigate to the `server/` directory. Enter `flask
 shell` to enter the Flask shell.
 
 ```console
 $ flask shell
 # => Python 3.8.13 (main, May 12 2022, 12:46:07) [Clang 13.1.6 (clang-1316.0.21.2)] on darwin
 # => App: app
-# => Instance: /python-p4-flask-sqlalchemy-pt2/app/instance
+# => Instance: /python-p4-flask-sqlalchemy-pt2/server/instance
 >>> # enter code here!
 ```
 
@@ -112,7 +112,7 @@ working with `db.session` objects instead of `session` objects. There are also
 cases where methods will be run from models instead of the session itself- we'll
 see an example in our seed script.
 
-Open `app/seed.py` and enter the following:
+Open `server/seed.py` and enter the following:
 
 ```py
 #!/usr/bin/env python3
@@ -174,7 +174,7 @@ scripts and vanilla SQLAlchemy scripts. Keep an eye out for minor errors that
 arise and refer back to the [Flask-SQLAlchemy documentation][flask_sqla] as
 needed.
 
-Run `python seed.py` from the `app/` directory to seed the database.
+Run `python seed.py` from the `server/` directory to seed the database.
 
 ***
 
@@ -217,10 +217,10 @@ The moment we've all been waiting for has arrived! We've already learned about
 databases and SQLAlchemy, but Phase 4 is about _web_ development. Let's use
 our newly-seeded database to put pet and owner information onto the internet.
 
-Open `app/app.py` and modify it to reflect the code below:
+Open `server/app.py` and modify it to reflect the code below:
 
 ```py
-# app/app.py
+# server/app.py
 
 #!/usr/bin/env python3
 
@@ -246,7 +246,7 @@ def index():
     return response
 
 if __name__ == '__main__':
-    app.run(port=5555)
+    app.run(port=5555, debug=True)
 
 ```
 
@@ -265,7 +265,7 @@ moment to review before we keep moving:
   response has a status code of 200, which means that the resource exists
   and is accessible at the provided URL.
 
-Enter the `app/` directory if you're not there already and run `python app.py`.
+Enter the `server/` directory if you're not there already and run `python app.py`.
 Navigate to 127.0.0.1:5555, and you should see this message in your browser:
 
 ![h1 text "Welcome to the pet/owner directory!" in Google Chrome](
@@ -279,7 +279,7 @@ Let's start working on displaying data in our Flask application.
 We'll start by adding another view for pets, searched by ID.
 
 ```py
-# app/app.py
+# server/app.py
 
 # after index()
 
@@ -317,7 +317,7 @@ now, but we still don't want our users to see error pages like this. Let's make
 another small change to the pet_by_id view to fix this:
 
 ```py
-# app/app.py
+# server/app.py
 
 # after index()
 
@@ -353,7 +353,7 @@ a whole.
 Let's finish out with a view for owners:
 
 ```py
-# app/app.py
+# server/app.py
 
 # pet_by_id()
 
@@ -418,7 +418,7 @@ iron out any remaining wrinkles.
 ## Solution Code
 
 ```py
-# app/app.py
+# server/app.py
 
 from flask import Flask, make_response
 from flask_migrate import Migrate
@@ -485,7 +485,7 @@ def owner_by_id(id):
     return response
 
 if __name__ == '__main__':
-    app.run(port=5555)
+    app.run(port=5555, debug=True)
 
 ```
 
