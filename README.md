@@ -281,6 +281,11 @@ We'll start by adding another view for pets, searched by ID.
 ```py
 # server/app.py
 
+from flask import Flask, make_response
+from flask_migrate import Migrate
+
+from models import db, Pet
+
 # after index()
 
 @app.route('/pets/<int:id>')
@@ -314,10 +319,15 @@ https://curriculum-content.s3.amazonaws.com/python/flask-sqlalchemy-pt2-2.png
 Navigate now to 127.0.0.1:5555/pets/1000. You will see an error message that
 suggests something went wrong on your server. We're not tracking 1000 pets right
 now, but we still don't want our users to see error pages like this. Let's make
-another small change to the pet_by_id view to fix this:
+another small change to the `pet_by_id()` view to fix this:
 
 ```py
 # server/app.py
+
+from flask import Flask, make_response
+from flask_migrate import Migrate
+
+from models import db, Pet
 
 # after index()
 
@@ -354,6 +364,11 @@ Let's finish out with a view for owners:
 
 ```py
 # server/app.py
+
+from flask import Flask, make_response
+from flask_migrate import Migrate
+
+from models import db, Pet, Owner
 
 # pet_by_id()
 
@@ -423,7 +438,7 @@ iron out any remaining wrinkles.
 from flask import Flask, make_response
 from flask_migrate import Migrate
 
-from models import db, Owner, Pet
+from models import db, Pet, Owner
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
