@@ -1,4 +1,4 @@
-# Flask-SQLAlchemy, Part 2
+# Flask-SQLAlchemy Part 2
 
 ## Learning Goals
 
