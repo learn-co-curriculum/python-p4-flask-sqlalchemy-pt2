@@ -124,8 +124,6 @@ from faker import Faker
 from app import app
 from models import db, Owner, Pet
 
-db.init_app(app)
-
 fake = Faker()
 
 with app.app_context():
@@ -158,16 +156,14 @@ transaction.
 
 Let's go over the differences:
 
-1. We need to initialize the application with our SQLAlchemy instance. This
-   is necessary because `db` is generated with each new run of the application-
-   it lives in `models.py`, so we need to initialize the application to connect
-   the two. There are strategies to get around this, but this is the approach
-   recommended by Pallets Projects.
-2. We need to create an application context with `app.app_context()` before we
+1. . We need to create an application context with `app.app_context()` before we
    begin. This will not necessarily be used, but it ensures that applications
    fail quickly if they are not configured with this important context.
-3. Deletion of all records is handled through models with `Model.query.delete()`
-   rather than `session.query(Model).delete()`.
+2. Deletion of all records is handled through models with `Model.query.delete()`
+   rather than `session.query(Model).delete()`. This syntax is carried through
+   other SQLAlchemy statements and queries as well. Because the session is
+   managed through the Flask application, there is no need to call it explicitly
+   when we run these statements and queries.
 
 These are the only differences you will typically see between Flask-SQLAlchemy
 scripts and vanilla SQLAlchemy scripts. Keep an eye out for minor errors that
